@@ -1,8 +1,6 @@
 package bashShell;
 
 public class Token {
-    public byte kind;
-    public String spelling;
 
     public final static byte FName = 0;
     public final static byte LIT = 1;

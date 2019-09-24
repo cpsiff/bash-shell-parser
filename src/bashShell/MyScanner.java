@@ -27,8 +27,9 @@ public class MyScanner {
                 case "man":
                 case "ps":
                 case "bg":
+                case "cd":
+                case "mkdir":
                     tokens.add(Token.FName);
-                    System.out.println(Token.FName);
                     break;
                 case "=":
                     tokens.add(Token.ASSIGN);
@@ -85,6 +86,8 @@ public class MyScanner {
     }
 
     public static void main(String [] args) {
-        Parser ts = new Parser("abc = cat eol");
+        //Parser ts = new Parser("ls -al eol mv this that eol touch myNewFile eol mv myNewFile newStuff eol cd newStuff eol chmod 577 eol");
+        Parser ts = new Parser("if cat file1 file2 then eol else eol fi eol");
+
     }
 }

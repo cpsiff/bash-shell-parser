@@ -1,10 +1,10 @@
 package bashShell;
 
-import java.util.*;
-
 public class Parser {
     private Byte currentToken = null;
     private MyScanner myScanner = null;
+
+    private boolean errorOccurred = false;
 
     //------------- Utility Methods -------------
 
@@ -19,9 +19,12 @@ public class Parser {
     private void accept(byte expectedKind) {
         if (currentToken == expectedKind)
             currentToken = myScanner.nextToken();
-        else
+        else {
             writeError("Expected:  " + Token.kindString(expectedKind) +
-                    "Found :" + Token.kindString(currentToken));
+                    "Found: " + Token.kindString(currentToken));
+            errorOccurred = true;
+        }
+
     }
 
     /**
@@ -42,6 +45,7 @@ public class Parser {
         myScanner = new MyScanner(sentence);
         currentToken = myScanner.nextToken();
         parseScript();
+        if (!errorOccurred) System.out.println("Script Accepted");
     }
 
     //---------------- Parsing Methods ---------------
