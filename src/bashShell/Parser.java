@@ -21,7 +21,7 @@ public class Parser {
             currentToken = myScanner.nextToken();
         else {
             writeError("Expected:  " + Token.kindString(expectedKind) +
-                    "Found: " + Token.kindString(currentToken));
+                    "  Found: " + Token.kindString(currentToken));
             errorOccurred = true;
         }
 
@@ -114,6 +114,7 @@ public class Parser {
                     parseArgument();
                 accept(Token.EOL);
                 accept(Token.DO);
+                accept(Token.EOL);
                 while(currentToken == Token.FName
                         || currentToken == Token.VAR
                         || currentToken == Token.IF

@@ -29,6 +29,7 @@ public class MyScanner {
                 case "bg":
                 case "cd":
                 case "mkdir":
+                case "test":
                     tokens.add(Token.FName);
                     break;
                 case "=":
@@ -62,7 +63,7 @@ public class MyScanner {
                     tokens.add(Token.EOL);
                     break;
                 default:
-                    if (temp.matches("[a-zA-Z][a-zA-Z0-9_]*")){
+                    if (temp.matches("[a-zA-Z][a-zA-Z0-9_.]*")){
                         tokens.add(Token.VAR);
                     }
                     else if(temp.matches("-?[a-zA-Z0-9]*|[0-9]")){
@@ -86,8 +87,22 @@ public class MyScanner {
     }
 
     public static void main(String [] args) {
-        //Parser ts = new Parser("ls -al eol mv this that eol touch myNewFile eol mv myNewFile newStuff eol cd newStuff eol chmod 577 eol");
-        Parser ts = new Parser("if cat file1 file2 then eol else eol fi eol");
+        // -------------- TESTS ----------------
 
+        //Parser ts = new Parser("ls -al eol mv this that eol touch myNewFile eol mv myNewFile newStuff eol cd newStuff eol chmod 577 eol");
+        //Parser ts = new Parser("if cat file1 file2 then eol else eol fi eol");
+        //Parser ts = new Parser("for apples in fruit eol do eol mv apples basket eol od eol");
+        //Parser ts = new Parser("if test -e apples then eol touch apples eol else eol fi eol");
+
+        // ------------- PROGRAM ----------------
+
+        while(true) {
+            Scanner in = new Scanner(System.in);
+            System.out.println("Type script below with spaces between tokens, and eol as an end of line, do not return after end of line");
+            System.out.print(">>> ");
+            String sentence = in.nextLine();
+
+            Parser ts = new Parser(sentence);
+        }
     }
 }
