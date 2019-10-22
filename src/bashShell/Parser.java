@@ -1,6 +1,5 @@
 package bashShell;
 import bashShell.ast.*;
-import com.sun.xml.internal.ws.message.FaultMessage;
 
 public class Parser {
     private Token currentToken = null;
@@ -111,21 +110,22 @@ public class Parser {
                     argument = parseArgument();
                 accept(Token.THEN);
                 accept(Token.EOL);
-                while(currentToken.kind == Token.FName
+                while (currentToken.kind == Token.FName
                         || currentToken.kind == Token.VAR
                         || currentToken.kind == Token.IF
                         || currentToken.kind == Token.FOR)
                     ifBlock = parseCommand();
                 accept(Token.ELSE);
                 accept(Token.EOL);
-                while(currentToken.kind == Token.FName
+                while (currentToken.kind == Token.FName
                         || currentToken.kind == Token.VAR
                         || currentToken.kind == Token.IF
                         || currentToken.kind == Token.FOR)
                     elseBlock = parseCommand();
                 accept(Token.FI);
                 accept(Token.EOL);
-                return new IfCmd(fNameArg, argument, ifBlock, elseBlock);
+                commandAST = new IfCmd(fNameArg, argument, ifBlock, elseBlock);
+                break;
             }
             case Token.FOR: {
                 acceptIt();
@@ -140,15 +140,24 @@ public class Parser {
                 accept(Token.EOL);
                 accept(Token.DO);
                 accept(Token.EOL);
-                while(currentToken.kind == Token.FName
+                while (currentToken.kind == Token.FName
                         || currentToken.kind == Token.VAR
                         || currentToken.kind == Token.IF
                         || currentToken.kind == Token.FOR)
                     command = parseCommand();
                 accept(Token.OD);
                 accept(Token.EOL);
-                return new ForCommand(varArg, argument, command);
+                commandAST = new ForCommand(varArg, argument, command);
+                break;
             }
+            default: {
+                System.err.println("Error in parseCommand: FName, VAR, IF, or FOR not found");
+            }
+        }
+        if(currentToken.kind != Token.EOT){
+            Command command2;
+            command2 = parseCommand();
+            return new SeqCmd(commandAST, command2);
         }
         return commandAST;
     }
