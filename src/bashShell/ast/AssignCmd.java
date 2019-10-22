@@ -10,9 +10,12 @@ public class AssignCmd extends Command {
     }
 
     /**
-     * Print node type and visit children in order
+     * Return node type and visit children in order
+     * Add indentation and indent children one level more
+     * @param i the indentation level (level of the tree, with 0 being the root
+     * @return an indented, multi-line string describing the tree of this node and below
      */
-    public String visit(){
-        return("AssignCmd\n" + this.lValue.visit() + this.rValue.visit());
+    public String visit(int i){
+        return(util.s(i) + "AssignCmd\n" + this.lValue.visit(i+1) + this.rValue.visit(i+1));
     }
 }

@@ -8,9 +8,12 @@ public class FNameArg extends SingleArg  {
     }
 
     /**
-     * Print node type and visit children in order
+     * Return node type and visit children in order
+     * Add indentation and indent children one level more
+     * @param i the indentation level (level of the tree, with 0 being the root
+     * @return an indented, multi-line string describing the tree of this node and below
      */
-    public String visit(){
-        return("FNameArg" + this.term.visit());
+    public String visit(int i){
+        return(util.s(i) + "FNameArg" + this.term.visit(i+1));
     }
 }

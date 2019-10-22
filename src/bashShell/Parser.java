@@ -56,7 +56,7 @@ public class Parser {
      * Outputs to System.out
      */
     public static String displayAST(){
-        return scriptAST.visit();
+        return scriptAST.visit(0);
     }
 
     //------------- Parser Methods -------------//
