@@ -3,12 +3,19 @@ package bashShell;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * Scan in the input sentence and outputs an ArrayList of tokens containing their type and spelling
+ */
 public class MyScanner {
 
     private int nextToken;
 
     private ArrayList<Token> tokens = null;
 
+    /**
+     * Construct ArrayList from string sentence
+     * @param sentence the sentence to be scanned
+     */
     public MyScanner(String sentence){
         Scanner sent = new Scanner(sentence);
         tokens = new ArrayList<Token>();
@@ -74,13 +81,20 @@ public class MyScanner {
                     }
             }
         }
+        //Print tokens to command line
         for (Token token: tokens){
             System.out.print(token.spelling + " ");
         }
         System.out.println();
+
+        // Reset to the start of the token list, for the scanner to use
         nextToken = 0;
     }
 
+    /**
+     * Gets the next token in the ArrayList
+     * @return the next token, or "eot" if there is no next token
+     */
     public Token nextToken() {
         if (nextToken < tokens.size()){
             nextToken++;

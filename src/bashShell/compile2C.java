@@ -39,28 +39,43 @@ public class compile2C {
             }
         }
 
-        // Read in input from file
-        File file = new File(inputFileName);
-        Scanner sc = new Scanner(file);
-        StringBuilder inputString = new StringBuilder();
-        while (sc.hasNextLine())
-            inputString.append(sc.nextLine()).append(" eol "); //Manually add an eol token to the end of each line
-
-        // Create a parser object, which will create an AST
-        Parser ts = new Parser(inputString.toString());
-
-        if(outputToScreen) {
-            System.out.println("\n" + Parser.displayAST());
+        // Do not continue if no input file is given
+        if (inputFileName.equals("")){
+            System.err.println("No input file name given");
         }
-        if(outputToFile) {
-            String outputFileName = inputFileName.substring(inputFileName.lastIndexOf("/")+1,
-                    inputFileName.lastIndexOf(".")) + ".ast";
-            writeToFile(outputFileName, Parser.displayAST());
-        }
+        else {
+            // Read in input from file
+            File file = new File(inputFileName);
+            Scanner sc = new Scanner(file);
+            StringBuilder inputString = new StringBuilder();
+            while (sc.hasNextLine())
+                inputString.append(sc.nextLine()).append(" eol "); //Manually add an eol token to the end of each line
 
+            // Create a parser object, which will create an AST
+            Parser ts = new Parser(inputString.toString());
+
+            if (outputToScreen) {
+                System.out.println("\n" + Parser.displayAST());
+            }
+
+            if (outputToFile) {
+                // Get just the name of the input file from the complete path
+                String outputFileName = inputFileName.substring(inputFileName.lastIndexOf("/") + 1,
+                        inputFileName.lastIndexOf(".")) + ".ast";
+                writeToFile(outputFileName, Parser.displayAST());
+                System.out.println("Wrote to file " + outputFileName);
+            }
+        }
     }
 
-    public static void writeToFile(String fileName, String fileContent) throws IOException
+    /**
+     * Writes the given string to a given file name in the current working directory
+     *
+     * @param fileName Just the name of the file to be written to including extension, not the full path
+     * @param fileContent The string content of the file to be written, including \n characters for new lines
+     * @throws IOException if file cannot be written to
+     */
+    private static void writeToFile(String fileName, String fileContent) throws IOException
     {
         FileWriter fileWriter = new FileWriter(System.getProperty("user.dir") + "/" + fileName);
         PrintWriter printWriter = new PrintWriter(fileWriter);

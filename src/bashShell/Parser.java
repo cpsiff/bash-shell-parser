@@ -153,7 +153,7 @@ public class Parser {
         return commandAST;
     }
 
-    private Argument parseArgument() {
+    private Argument parseArgument() { //TODO: make this allow for multiple arguments?
         switch(currentToken.kind) {
             case Token.FName: {
                 return parseFileName();

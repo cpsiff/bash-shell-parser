@@ -2,9 +2,14 @@ package bashShell;
 
 public class Token {
 
-    public Token(byte kindParam, String spellingParam){
-        this.kind = kindParam;
-        this.spelling = spellingParam;
+    /**
+     * Create a new token
+     * @param kind the kind of token that it is, given as a byte. Encodings shown below.
+     * @param spelling the string contents of the token
+     */
+    public Token(byte kind, String spelling){
+        this.kind = kind;
+        this.spelling = spelling;
     }
 
     public byte kind;
@@ -27,12 +32,18 @@ public class Token {
     public final static byte CMD = 14;
     public final static byte ARG = 15;
 
+    //Used for error messages, instead of displaying the byte, display the spelling
     private final static String[] spellings = {
             "<shell command>", "<literal>", "<variable>", "assign",
             "if", "then", "else", "fi", "for", "in", "do", "od", "<eol>",
             "<eot>", "<command>", "<argument>"
     };
 
+    /**
+     * Get the spelling of the kind
+     * @param kind the byte to be interpreted
+     * @return a string spelling of the byte type
+     */
     public static String kindString(byte kind) {
         return spellings[kind];
     }
