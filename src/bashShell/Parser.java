@@ -154,7 +154,7 @@ public class Parser {
                 System.err.println("Error in parseCommand: FName, VAR, IF, or FOR not found");
             }
         }
-        if(currentToken.kind != Token.EOT){
+        if(currentToken.kind != Token.EOT && currentToken.kind != Token.ELSE && currentToken.kind != Token.FI && currentToken.kind != Token.OD){
             Command command2;
             command2 = parseCommand();
             return new SeqCmd(commandAST, command2);
@@ -162,19 +162,28 @@ public class Parser {
         return commandAST;
     }
 
-    private Argument parseArgument() { //TODO: make this allow for multiple arguments?
+    private Argument parseArgument() {
+        Argument arg = null;
         switch(currentToken.kind) {
             case Token.FName: {
-                return parseFileName();
+                arg = parseFileName();
+                break;
             }
             case Token.LIT: {
-                return parseLiteral();
+                arg = parseLiteral();
+                break;
             }
             case Token.VAR: {
-                return parseVariable();
+                arg = parseVariable();
+                break;
             }
         }
-        return null;
+        if(currentToken.kind != Token.EOL && currentToken.kind != Token.THEN){
+            Argument arg2;
+            arg2 = parseArgument();
+            return new SeqArg(arg, arg2);
+        }
+        return arg;
     }
 
     // A separate parseSingleArgument method is implemented to ensure that single arguments rules are enforced
