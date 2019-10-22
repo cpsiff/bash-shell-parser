@@ -10,8 +10,7 @@ public class LiteralArg extends SingleArg {
     /**
      * Print node type and visit children in order
      */
-    public void visit(){
-        System.out.print("LiteralArg");
-        this.literal.visit();
+    public String visit(){
+        return("LiteralArg" + this.literal.visit());
     }
 }

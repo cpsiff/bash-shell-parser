@@ -10,7 +10,7 @@ public class NullArg extends Argument {
     /**
      * Print node type and visit children in order
      */
-    public void visit(){
-        System.out.println("NullArg");
+    public String visit(){
+        return("NullArg");
     }
 }

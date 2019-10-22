@@ -56,8 +56,8 @@ public class Parser {
      * Display the AST starting at the script by recursively visiting each node in the tree
      * Outputs to System.out
      */
-    public static void displayAST(){
-        scriptAST.visit();
+    public static String displayAST(){
+        return scriptAST.visit();
     }
 
     //------------- Parser Methods -------------//

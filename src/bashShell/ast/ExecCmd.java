@@ -11,9 +11,7 @@ public class ExecCmd extends Command {
     /**
      * Print node type and visit children in order
      */
-    public void visit(){
-        System.out.println("ExecCmd");
-        this.command.visit();
-        this.args.visit();
+    public String visit(){
+        return("ExecCmd\n" + this.command.visit() + this.args.visit());
     }
 }

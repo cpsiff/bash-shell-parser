@@ -16,11 +16,7 @@ public class IfCmd extends Command{
     /**
      * Print node type and visit children in order
      */
-    public void visit(){
-        System.out.println("IfCmd");
-        this.command.visit();
-        this.args.visit();
-        this.thenBlock.visit();
-        this.elseBlock.visit();
+    public String visit(){
+        return("IfCmd\n" + this.command.visit() + this.args.visit() + this.thenBlock.visit() + this.elseBlock.visit());
     }
 }

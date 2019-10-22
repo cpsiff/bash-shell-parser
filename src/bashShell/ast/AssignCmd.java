@@ -12,9 +12,7 @@ public class AssignCmd extends Command {
     /**
      * Print node type and visit children in order
      */
-    public void visit(){
-        System.out.println("AssignCmd");
-        this.lValue.visit();
-        this.rValue.visit();
+    public String visit(){
+        return("AssignCmd\n" + this.lValue.visit() + this.rValue.visit());
     }
 }

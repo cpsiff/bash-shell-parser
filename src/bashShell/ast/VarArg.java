@@ -10,8 +10,7 @@ public class VarArg extends SingleArg {
     /**
      * Print node type and visit children in order
      */
-    public void visit(){
-        System.out.print("VarArg");
-        this.variable.visit();
+    public String visit(){
+        return("VarArg" + this.variable.visit());
     }
 }

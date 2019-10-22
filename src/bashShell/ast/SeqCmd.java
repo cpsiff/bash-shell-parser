@@ -12,9 +12,7 @@ public class SeqCmd extends Command {
     /**
      * Print node type and visit children in order
      */
-    public void visit(){
-        System.out.println("SeqCmd");
-        this.c1.visit();
-        this.c2.visit();
+    public String visit(){
+        return("SeqCmd\n" + this.c1.visit() + this.c2.visit());
     }
 }

@@ -14,10 +14,7 @@ public class ForCommand extends Command {
     /**
      * Print node type and visit children in order
      */
-    public void visit() {
-        System.out.println("ForCommand");
-        this.var.visit();
-        this.args.visit();
-        this.doBody.visit();
+    public String visit() {
+        return("ForCommand\n" + this.var.visit() + this.args.visit() + this.doBody.visit());
     }
 }

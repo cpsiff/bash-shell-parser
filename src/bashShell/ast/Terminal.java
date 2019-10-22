@@ -10,7 +10,7 @@ public class Terminal extends AST {
     /**
      * Print node type and visit children in order
      */
-    public void visit(){
-        System.out.println(" (" + this.spelling + ")");
+    public String visit(){
+        return(" (" + this.spelling + ")\n");
     }
 }

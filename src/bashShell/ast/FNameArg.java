@@ -10,8 +10,7 @@ public class FNameArg extends SingleArg  {
     /**
      * Print node type and visit children in order
      */
-    public void visit(){
-        System.out.print("FNameArg");
-        this.term.visit();
+    public String visit(){
+        return("FNameArg" + this.term.visit());
     }
 }

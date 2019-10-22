@@ -1,7 +1,7 @@
 package bashShell;
 
 import java.util.Scanner;
-import java.io.File;
+import java.io.*;
 
 /**
  * This class is called from the command line to parse a sentence into an AST
@@ -50,7 +50,21 @@ public class compile2C {
         Parser ts = new Parser(inputString.toString());
 
         if(outputToScreen) {
-            Parser.displayAST();
+            System.out.println("\n" + Parser.displayAST());
         }
+        if(outputToFile) {
+            String outputFileName = inputFileName.substring(inputFileName.lastIndexOf("/")+1,
+                    inputFileName.lastIndexOf(".")) + ".ast";
+            writeToFile(outputFileName, Parser.displayAST());
+        }
+
+    }
+
+    public static void writeToFile(String fileName, String fileContent) throws IOException
+    {
+        FileWriter fileWriter = new FileWriter(System.getProperty("user.dir") + "/" + fileName);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        printWriter.print(fileContent);
+        printWriter.close();
     }
 }

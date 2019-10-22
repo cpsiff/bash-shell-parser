@@ -10,8 +10,7 @@ public class Script extends AST {
     /**
      * Print node type and visit children in order
      */
-    public void visit(){
-        System.out.println("Script");
-        this.c.visit();
+    public String visit(){
+        return("Script\n" + this.c.visit());
     }
 }

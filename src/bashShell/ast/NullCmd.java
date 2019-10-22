@@ -10,7 +10,7 @@ public class NullCmd {
     /**
      * Print node type and visit children in order
      */
-    public void visit(){
-        System.out.println("NullCmd");
+    public String visit(){
+        return("NullCmd");
     }
 }
