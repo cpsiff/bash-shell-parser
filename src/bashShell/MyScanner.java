@@ -7,11 +7,11 @@ public class MyScanner {
 
     private int nextToken;
 
-    private ArrayList<Byte> tokens = null;
+    private ArrayList<Token> tokens = null;
 
     public MyScanner(String sentence){
         Scanner sent = new Scanner(sentence);
-        tokens = new ArrayList<Byte>();
+        tokens = new ArrayList<Token>();
 
         while(sent.hasNext()) {
             String temp = sent.next();
@@ -30,79 +30,62 @@ public class MyScanner {
                 case "cd":
                 case "mkdir":
                 case "test":
-                    tokens.add(Token.FName);
+                    tokens.add(new Token(Token.FName, temp));
                     break;
                 case "=":
-                    tokens.add(Token.ASSIGN);
+                    tokens.add(new Token(Token.ASSIGN, temp));
                     break;
                 case "if":
-                    tokens.add(Token.IF);
+                    tokens.add(new Token(Token.IF, temp));
                     break;
                 case "then":
-                    tokens.add(Token.THEN);
+                    tokens.add(new Token(Token.THEN, temp));
                     break;
                 case "else":
-                    tokens.add(Token.ELSE);
+                    tokens.add(new Token(Token.ELSE, temp));
                     break;
                 case "fi":
-                    tokens.add(Token.FI);
+                    tokens.add(new Token(Token.FI, temp));
                     break;
                 case "for":
-                    tokens.add(Token.FOR);
+                    tokens.add(new Token(Token.FOR, temp));
                     break;
                 case "in":
-                    tokens.add(Token.IN);
+                    tokens.add(new Token(Token.IN, temp));
                     break;
                 case "do":
-                    tokens.add(Token.DO);
+                    tokens.add(new Token(Token.DO, temp));
                     break;
                 case "od":
-                    tokens.add(Token.OD);
+                    tokens.add(new Token(Token.OD, temp));
                     break;
                 case "eol":
-                    tokens.add(Token.EOL);
+                    tokens.add(new Token(Token.EOL, temp));
                     break;
                 default:
                     if (temp.matches("[a-zA-Z][a-zA-Z0-9_.]*")){
-                        tokens.add(Token.VAR);
+                        tokens.add(new Token(Token.VAR, temp));
                     }
                     else if(temp.matches("-?[a-zA-Z0-9]*|[0-9]")){
-                        tokens.add(Token.LIT);
+                        tokens.add(new Token(Token.LIT, temp));
                     }
                     else{
                         throw new RuntimeException("Unexpected token: " + temp);
                     }
             }
         }
-        System.out.println(tokens);
+        for (Token token: tokens){
+            System.out.print(token.spelling + " ");
+        }
+        System.out.println();
         nextToken = 0;
     }
 
-    public Byte nextToken() {
+    public Token nextToken() {
         if (nextToken < tokens.size()){
             nextToken++;
             return(tokens.get(nextToken - 1));
         }
-        else return Token.EOT;
-    }
-
-    public static void main(String [] args) {
-        // -------------- TESTS ----------------
-
-        //Parser ts = new Parser("ls -al eol mv this that eol touch myNewFile eol mv myNewFile newStuff eol cd newStuff eol chmod 577 eol");
-        //Parser ts = new Parser("if cat file1 file2 then eol else eol fi eol");
-        //Parser ts = new Parser("for apples in fruit eol do eol mv apples basket eol od eol");
-        //Parser ts = new Parser("if test -e apples then eol touch apples eol else eol fi eol");
-
-        // ------------- PROGRAM ----------------
-
-        while(true) {
-            Scanner in = new Scanner(System.in);
-            System.out.println("Type script below with spaces between tokens, and eol as an end of line, do not return after end of line");
-            System.out.print(">>> ");
-            String sentence = in.nextLine();
-
-            Parser ts = new Parser(sentence);
-        }
+        else return new Token(Token.EOT, "eot");
     }
 }

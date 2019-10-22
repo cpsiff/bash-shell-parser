@@ -2,6 +2,14 @@ package bashShell;
 
 public class Token {
 
+    public Token(byte kindParam, String spellingParam){
+        this.kind = kindParam;
+        this.spelling = spellingParam;
+    }
+
+    public byte kind;
+    public String spelling;
+
     public final static byte FName = 0;
     public final static byte LIT = 1;
     public final static byte VAR = 2;
