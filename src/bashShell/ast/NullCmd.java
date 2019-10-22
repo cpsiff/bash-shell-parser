@@ -1,6 +1,6 @@
 package bashShell.ast;
 
-public class NullCmd {
+public class NullCmd extends Command {
     private Command cmd = null;
 
     public NullCmd(){
@@ -14,6 +14,6 @@ public class NullCmd {
      * @return an indented, multi-line string describing the tree of this node and below
      */
     public String visit(int i){
-        return(util.s(i) + "NullCmd");
+        return(util.s(i) + "NullCmd\n");
     }
 }

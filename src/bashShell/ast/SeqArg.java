@@ -16,6 +16,6 @@ public class SeqArg extends Argument {
      * @return an indented, multi-line string describing the tree of this node and below
      */
     public String visit(int i){
-        return(util.s(i) + "SeqArg" + arg1.visit(i+1) + arg2.visit(i+1));
+        return(util.s(i) + "SeqArg\n" + arg1.visit(i+1) + arg2.visit(i+1));
     }
 }

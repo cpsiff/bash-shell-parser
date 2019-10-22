@@ -104,24 +104,33 @@ public class Parser {
                 Command ifBlock = null;
                 Command elseBlock = null;
                 acceptIt();
-                while (currentToken.kind == Token.FName
+                if (currentToken.kind == Token.FName
                         || currentToken.kind == Token.LIT
                         || currentToken.kind == Token.VAR)
                     argument = parseArgument();
+                else{
+                    argument = new NullArg();
+                }
                 accept(Token.THEN);
                 accept(Token.EOL);
-                while (currentToken.kind == Token.FName
+                if (currentToken.kind == Token.FName
                         || currentToken.kind == Token.VAR
                         || currentToken.kind == Token.IF
                         || currentToken.kind == Token.FOR)
                     ifBlock = parseCommand();
+                else{
+                    ifBlock = new NullCmd();
+                }
                 accept(Token.ELSE);
                 accept(Token.EOL);
-                while (currentToken.kind == Token.FName
+                if (currentToken.kind == Token.FName
                         || currentToken.kind == Token.VAR
                         || currentToken.kind == Token.IF
                         || currentToken.kind == Token.FOR)
                     elseBlock = parseCommand();
+                else{
+                    elseBlock = new NullCmd();
+                }
                 accept(Token.FI);
                 accept(Token.EOL);
                 commandAST = new IfCmd(fNameArg, argument, ifBlock, elseBlock);
