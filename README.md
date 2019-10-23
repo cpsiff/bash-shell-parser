@@ -8,10 +8,10 @@ Command Line Parameters:<br>
 `-d` (optional) output to system.out
 
 Example:<br>
-`compile2C -p -d /home/carter/IdeaProjects/bash-sub-shell/test.sh -d`
+`compile2C -p -d /home/carter/IdeaProjects/bash-sub-shell/test.sh`
 
 ## Test Cases
-Some test cases that I have confirmed work:
+Some test cases that I have confirmed to work:
 
 ```$xslt
 file1 = stuff1.txt
