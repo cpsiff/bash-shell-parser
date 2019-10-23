@@ -15,6 +15,6 @@ public class ExecCmd extends Command {
      * @return an indented, multi-line string describing the tree of this node and below
      */
     public String visit(int i){
-        return(util.s(i) + "ExecCmd\n" + this.command.visit(i+1) + this.args.visit(i+1));
+        return(Util.s(i) + "ExecCmd\n" + this.command.visit(i+1) + this.args.visit(i+1));
     }
 }

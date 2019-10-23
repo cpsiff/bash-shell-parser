@@ -18,6 +18,6 @@ public class ForCommand extends Command {
      * @return an indented, multi-line string describing the tree of this node and below
      */
     public String visit(int i) {
-        return(util.s(i) + "ForCommand\n" + this.var.visit(i+1) + this.args.visit(i+1) + this.doBody.visit(i+1));
+        return(Util.s(i) + "ForCommand\n" + this.var.visit(i+1) + this.args.visit(i+1) + this.doBody.visit(i+1));
     }
 }

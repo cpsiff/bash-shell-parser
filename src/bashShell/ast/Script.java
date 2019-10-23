@@ -14,6 +14,6 @@ public class Script extends AST {
      * @return an indented, multi-line string describing the tree of this node and below
      */
     public String visit(int i){
-        return(util.s(i) + "Script\n" + this.c.visit(i+1));
+        return(Util.s(i) + "Script\n" + this.c.visit(i+1));
     }
 }

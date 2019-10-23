@@ -14,6 +14,6 @@ public class NullCmd extends Command {
      * @return an indented, multi-line string describing the tree of this node and below
      */
     public String visit(int i){
-        return(util.s(i) + "NullCmd\n");
+        return(Util.s(i) + "NullCmd\n");
     }
 }

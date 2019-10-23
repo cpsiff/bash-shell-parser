@@ -14,6 +14,6 @@ public class FNameArg extends SingleArg  {
      * @return an indented, multi-line string describing the tree of this node and below
      */
     public String visit(int i){
-        return(util.s(i) + "FNameArg" + this.term.visit(i+1));
+        return(Util.s(i) + "FNameArg" + this.term.visit(i+1));
     }
 }

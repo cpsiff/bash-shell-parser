@@ -16,6 +16,6 @@ public class SeqCmd extends Command {
      * @return an indented, multi-line string describing the tree of this node and below
      */
     public String visit(int i){
-        return(util.s(i) + "SeqCmd\n" + this.c1.visit(i+1) + this.c2.visit(i+1));
+        return(Util.s(i) + "SeqCmd\n" + this.c1.visit(i+1) + this.c2.visit(i+1));
     }
 }

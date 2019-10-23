@@ -14,6 +14,6 @@ public class NullArg extends Argument {
      * @return an indented, multi-line string describing the tree of this node and below
      */
     public String visit(int i){
-        return(util.s(i) + "NullArg\n");
+        return(Util.s(i) + "NullArg\n");
     }
 }

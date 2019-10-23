@@ -16,6 +16,6 @@ public class AssignCmd extends Command {
      * @return an indented, multi-line string describing the tree of this node and below
      */
     public String visit(int i){
-        return(util.s(i) + "AssignCmd\n" + this.lValue.visit(i+1) + this.rValue.visit(i+1));
+        return(Util.s(i) + "AssignCmd\n" + this.lValue.visit(i+1) + this.rValue.visit(i+1));
     }
 }

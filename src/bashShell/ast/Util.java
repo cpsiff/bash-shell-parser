@@ -3,7 +3,7 @@ package bashShell.ast;
 /**
  * Utility class for visiting nodes
  */
-public class util {
+public class Util {
     /**
      * For use creating indentation in tree output
      * @param length the indentation amount
