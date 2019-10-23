@@ -1,6 +1,6 @@
 # Bash Shell Parser
 
-##Usage
+## Usage
 
 Command Line Parameters:<br>
 `full_file_path` (required) path of input file to parse<br>
@@ -10,7 +10,7 @@ Command Line Parameters:<br>
 Example:<br>
 `compile2C -p -d /home/carter/IdeaProjects/bash-sub-shell/test.sh -d`
 
-##Test Cases
+## Test Cases
 Some test cases that I have confirmed work:
 
 ```$xslt
