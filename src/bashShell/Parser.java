@@ -99,11 +99,11 @@ public class Parser {
                 break;
             }
             case Token.IF: {
+                acceptIt();
                 FNameArg fNameArg = parseFileName();
                 Argument argument = null;
                 Command ifBlock = null;
                 Command elseBlock = null;
-                acceptIt();
                 if (currentToken.kind == Token.FName
                         || currentToken.kind == Token.LIT
                         || currentToken.kind == Token.VAR)
