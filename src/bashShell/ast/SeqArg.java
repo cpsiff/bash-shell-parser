@@ -1,5 +1,7 @@
 package bashShell.ast;
 
+import bashShell.DisplayTreeVisitor;
+
 public class SeqArg extends Argument {
     private Argument arg1;
     private Argument arg2;
@@ -9,13 +11,16 @@ public class SeqArg extends Argument {
         this.arg2 = arg2;
     }
 
-    /**
-     * Return node type and visit children in order
-     * Add indentation and indent children one level more
-     * @param i the indentation level (level of the tree, with 0 being the root
-     * @return an indented, multi-line string describing the tree of this node and below
-     */
-    public String visit(int i){
-        return(Util.s(i) + "SeqArg\n" + arg1.visit(i+1) + arg2.visit(i+1));
+    public Argument getArg2() {
+        return arg2;
+    }
+
+    public Argument getArg1() {
+        return arg1;
+    }
+
+    @Override
+    public String accept(DisplayTreeVisitor visitor, int i) {
+        return visitor.visitSeqArg(this, i);
     }
 }

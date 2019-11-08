@@ -1,5 +1,7 @@
 package bashShell.ast;
 
+import bashShell.DisplayTreeVisitor;
+
 public class SeqCmd extends Command {
     private Command c1;
     private Command c2;
@@ -9,13 +11,16 @@ public class SeqCmd extends Command {
         this.c2 = c2;
     }
 
-    /**
-     * Return node type and visit children in order
-     * Add indentation and indent children one level more
-     * @param i the indentation level (level of the tree, with 0 being the root
-     * @return an indented, multi-line string describing the tree of this node and below
-     */
-    public String visit(int i){
-        return(Util.s(i) + "SeqCmd\n" + this.c1.visit(i+1) + this.c2.visit(i+1));
+    public Command getC2() {
+        return c2;
+    }
+
+    public Command getC1() {
+        return c1;
+    }
+
+    @Override
+    public String accept(DisplayTreeVisitor visitor, int i) {
+        return visitor.visitSeqCmd(this, i);
     }
 }

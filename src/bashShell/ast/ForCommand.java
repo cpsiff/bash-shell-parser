@@ -1,5 +1,7 @@
 package bashShell.ast;
 
+import bashShell.DisplayTreeVisitor;
+
 public class ForCommand extends Command {
     private VarArg var;
     private Argument args;
@@ -11,13 +13,20 @@ public class ForCommand extends Command {
         this.doBody = doBody;
     }
 
-    /**
-     * Return node type and visit children in order
-     * Add indentation and indent children one level more
-     * @param i the indentation level (level of the tree, with 0 being the root
-     * @return an indented, multi-line string describing the tree of this node and below
-     */
-    public String visit(int i) {
-        return(Util.s(i) + "ForCommand\n" + this.var.visit(i+1) + this.args.visit(i+1) + this.doBody.visit(i+1));
+    public Command getDoBody() {
+        return doBody;
+    }
+
+    public Argument getArgs() {
+        return args;
+    }
+
+    public VarArg getVar() {
+        return var;
+    }
+
+    @Override
+    public String accept(DisplayTreeVisitor visitor, int i) {
+        return visitor.visitForCommand(this, i);
     }
 }

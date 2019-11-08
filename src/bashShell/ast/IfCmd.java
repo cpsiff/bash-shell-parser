@@ -1,5 +1,7 @@
 package bashShell.ast;
 
+import bashShell.DisplayTreeVisitor;
+
 public class IfCmd extends Command{
     private FNameArg command;
     private Argument args;
@@ -13,13 +15,24 @@ public class IfCmd extends Command{
         this.elseBlock = elseBlock;
     }
 
-    /**
-     * Return node type and visit children in order
-     * Add indentation and indent children one level more
-     * @param i the indentation level (level of the tree, with 0 being the root
-     * @return an indented, multi-line string describing the tree of this node and below
-     */
-    public String visit(int i){
-        return(Util.s(i) + "IfCmd\n" + this.command.visit(i+1) + this.args.visit(i+1) + this.thenBlock.visit(i+1) + this.elseBlock.visit(i+1));
+    public Command getElseBlock() {
+        return elseBlock;
+    }
+
+    public Command getThenBlock() {
+        return thenBlock;
+    }
+
+    public Argument getArgs() {
+        return args;
+    }
+
+    public FNameArg getCommand() {
+        return command;
+    }
+
+    @Override
+    public String accept(DisplayTreeVisitor visitor, int i) {
+        return visitor.visitIfCmd(this, i);
     }
 }

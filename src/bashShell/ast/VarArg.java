@@ -1,5 +1,7 @@
 package bashShell.ast;
 
+import bashShell.DisplayTreeVisitor;
+
 public class VarArg extends SingleArg {
     private Terminal variable;
 
@@ -7,13 +9,12 @@ public class VarArg extends SingleArg {
         this.variable = variable;
     }
 
-    /**
-     * Return node type and visit children in order
-     * Add indentation and indent children one level more
-     * @param i the indentation level (level of the tree, with 0 being the root
-     * @return an indented, multi-line string describing the tree of this node and below
-     */
-    public String visit(int i){
-        return(Util.s(i) + "VarArg" + this.variable.visit(i+1));
+    public Terminal getVariable() {
+        return variable;
+    }
+
+    @Override
+    public String accept(DisplayTreeVisitor visitor, int i) {
+        return visitor.visitVarArg(this, i);
     }
 }
