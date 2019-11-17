@@ -46,12 +46,19 @@ public class Parser {
 
     //---------------- Public Methods ----------------//
 
+    /**
+     * Create new parser
+     * @param sentence the sentence to be processed
+     */
     public Parser(String sentence){
         myScanner = new MyScanner(sentence);
         currentToken = myScanner.nextToken();
         scriptAST = parseScript();
     }
 
+    /**
+     * Use DecorateASTVisitor to go through and perform contextual analysis, as well as decorate the tree
+     */
     public static void decorateAST(){
         DecorateASTVisitor visitor = new DecorateASTVisitor();
         visitor.visitScript(scriptAST,null);
