@@ -1,5 +1,6 @@
 package bashShell.ast;
 
+import bashShell.DecorateASTVisitor;
 import bashShell.DisplayTreeVisitor;
 
 public class ExecCmd extends Command {
@@ -23,4 +24,6 @@ public class ExecCmd extends Command {
     public String accept(DisplayTreeVisitor visitor, int i) {
         return visitor.visitExecCmd(this, i);
     }
+    public Object accept(DecorateASTVisitor visitor, Object o){return visitor.visitExecCmd(this, o);}
+
 }

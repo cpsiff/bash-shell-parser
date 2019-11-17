@@ -1,5 +1,6 @@
 package bashShell.ast;
 
+import bashShell.DecorateASTVisitor;
 import bashShell.DisplayTreeVisitor;
 
 public class SeqCmd extends Command {
@@ -23,4 +24,5 @@ public class SeqCmd extends Command {
     public String accept(DisplayTreeVisitor visitor, int i) {
         return visitor.visitSeqCmd(this, i);
     }
+    public Object accept(DecorateASTVisitor visitor, Object o){return visitor.visitSeqCmd(this, o);}
 }

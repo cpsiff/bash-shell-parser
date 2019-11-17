@@ -1,5 +1,6 @@
 package bashShell.ast;
 
+import bashShell.DecorateASTVisitor;
 import bashShell.DisplayTreeVisitor;
 
 public class Script extends AST {
@@ -17,4 +18,5 @@ public class Script extends AST {
     public String accept(DisplayTreeVisitor visitor, int i) {
         return visitor.visitScript(this, i);
     }
+    public Object accept(DecorateASTVisitor visitor, Object o){return visitor.visitScript(this, o);}
 }

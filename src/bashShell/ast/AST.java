@@ -1,5 +1,6 @@
 package bashShell.ast;
 
+import bashShell.DecorateASTVisitor;
 import bashShell.DisplayTreeVisitor;
 
 /**
@@ -7,4 +8,5 @@ import bashShell.DisplayTreeVisitor;
  */
 public abstract class AST {
     public abstract String accept(DisplayTreeVisitor visitor, int i);
+    public abstract Object accept(DecorateASTVisitor visitor, Object o);
 }

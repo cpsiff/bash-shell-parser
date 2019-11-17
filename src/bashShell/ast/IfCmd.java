@@ -1,5 +1,6 @@
 package bashShell.ast;
 
+import bashShell.DecorateASTVisitor;
 import bashShell.DisplayTreeVisitor;
 
 public class IfCmd extends Command{
@@ -35,4 +36,5 @@ public class IfCmd extends Command{
     public String accept(DisplayTreeVisitor visitor, int i) {
         return visitor.visitIfCmd(this, i);
     }
+    public Object accept(DecorateASTVisitor visitor, Object o){return visitor.visitIfCmd(this, o);}
 }

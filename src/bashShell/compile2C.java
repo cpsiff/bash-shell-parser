@@ -65,6 +65,10 @@ public class compile2C {
                 writeToFile(outputFileName, Parser.displayAST());
                 System.out.println("Wrote to file " + outputFileName);
             }
+
+            System.out.println("Decorating AST");
+            Parser.decorateAST();
+            System.out.println("Decorated AST");
         }
     }
 

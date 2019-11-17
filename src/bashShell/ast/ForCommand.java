@@ -1,15 +1,16 @@
 package bashShell.ast;
 
+import bashShell.DecorateASTVisitor;
 import bashShell.DisplayTreeVisitor;
 
 public class ForCommand extends Command {
     private VarArg var;
-    private Argument args;
+    private Argument arg;
     private Command doBody;
 
-    public ForCommand(VarArg var, Argument args, Command doBody){
+    public ForCommand(VarArg var, Argument arg, Command doBody){
         this.var = var;
-        this.args = args;
+        this.arg = arg;
         this.doBody = doBody;
     }
 
@@ -17,8 +18,8 @@ public class ForCommand extends Command {
         return doBody;
     }
 
-    public Argument getArgs() {
-        return args;
+    public Argument getArg() {
+        return arg;
     }
 
     public VarArg getVar() {
@@ -29,4 +30,5 @@ public class ForCommand extends Command {
     public String accept(DisplayTreeVisitor visitor, int i) {
         return visitor.visitForCommand(this, i);
     }
+    public Object accept(DecorateASTVisitor visitor, Object o){return visitor.visitForCommand(this, o);}
 }

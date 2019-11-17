@@ -3,16 +3,16 @@ package bashShell;
 import bashShell.ast.*;
 
 public interface Visitor {
-    String visitAssignCmd(AssignCmd assignCmd, int i);
-    String visitExecCmd(ExecCmd execCmd, int i);
-    String visitFNameArg(FNameArg fNameArg, int i);
-    String visitForCommand(ForCommand forCommand, int i);
-    String visitIfCmd(IfCmd ifCmd, int i);
-    String visitLiteralArg(LiteralArg literalArg, int i);
-    String visitNullArg(NullArg nullArg, int i);
-    String visitNullCmd(NullCmd nullCmd, int i);
-    String visitScript(Script script, int i);
-    String visitSeqCmd(SeqCmd seqCmd, int i);
-    String visitTerminal(Terminal terminal, int i);
-    String visitVarArg(VarArg varArg, int i);
+    Object visitAssignCmd(AssignCmd assignCmd, Object o);
+    Object visitExecCmd(ExecCmd execCmd, Object o);
+    Object visitFNameArg(FNameArg fNameArg, Object o);
+    Object visitForCommand(ForCommand forCommand, Object o);
+    Object visitIfCmd(IfCmd ifCmd, Object o);
+    Object visitLiteralArg(LiteralArg literalArg, Object o);
+    Object visitNullArg(NullArg nullArg, Object o);
+    Object visitNullCmd(NullCmd nullCmd, Object o);
+    Object visitScript(Script script, Object o);
+    Object visitSeqCmd(SeqCmd seqCmd, Object o);
+    Object visitTerminal(Terminal terminal, Object o);
+    Object visitVarArg(VarArg varArg, Object o);
 }

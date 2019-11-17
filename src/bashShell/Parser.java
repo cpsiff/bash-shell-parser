@@ -5,6 +5,7 @@ public class Parser {
     private Token currentToken = null;
     private MyScanner myScanner = null;
     private static Script scriptAST = null;
+    private static Script decoratedScriptAST = null;
 
     // Keep track of whether an error has occurred to know whether to accept string or not
     private boolean errorOccurred = false;
@@ -49,6 +50,11 @@ public class Parser {
         myScanner = new MyScanner(sentence);
         currentToken = myScanner.nextToken();
         scriptAST = parseScript();
+    }
+
+    public static void decorateAST(){
+        DecorateASTVisitor visitor = new DecorateASTVisitor();
+        visitor.visitScript(scriptAST,null);
     }
 
     /**

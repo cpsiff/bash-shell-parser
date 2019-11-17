@@ -2,7 +2,7 @@ package bashShell;
 
 import bashShell.ast.*;
 
-public class DisplayTreeVisitor implements Visitor{
+public class DisplayTreeVisitor implements PrintVisitor{
 
     /**
      * For use creating indentation in tree output
@@ -31,7 +31,7 @@ public class DisplayTreeVisitor implements Visitor{
     }
 
     public String visitForCommand(ForCommand forCommand, int i){
-        return(s(i) + "ForCommand\n" + visitVarArg(forCommand.getVar(), i+1) + visitArgument(forCommand.getArgs(), i+1) + visitCommand(forCommand.getDoBody(), i+1));
+        return(s(i) + "ForCommand\n" + visitVarArg(forCommand.getVar(), i+1) + visitArgument(forCommand.getArg(), i+1) + visitCommand(forCommand.getDoBody(), i+1));
     }
 
     public String visitIfCmd(IfCmd ifCmd, int i){
@@ -39,7 +39,7 @@ public class DisplayTreeVisitor implements Visitor{
     }
 
     public String visitLiteralArg(LiteralArg literalArg, int i){
-        return(s(i) + "LiteralArg\n" + visitTerminal(literalArg.getLiteral(), i+1));
+        return(s(i) + "LiteralArg\n" + visitTerminal(literalArg.getTerm(), i+1));
     }
 
     public String visitNullArg(NullArg nullArg, int i){
@@ -67,7 +67,7 @@ public class DisplayTreeVisitor implements Visitor{
     }
 
     public String visitVarArg(VarArg varArg, int i){
-        return(s(i) + "VarArg\n" + visitTerminal(varArg.getVariable(), i+1));
+        return(s(i) + "VarArg\n" + visitTerminal(varArg.getTerm(), i+1));
     }
 
     public String visitCommand(Command command, int i){

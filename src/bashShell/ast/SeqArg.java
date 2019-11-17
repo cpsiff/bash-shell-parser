@@ -1,5 +1,6 @@
 package bashShell.ast;
 
+import bashShell.DecorateASTVisitor;
 import bashShell.DisplayTreeVisitor;
 
 public class SeqArg extends Argument {
@@ -23,4 +24,5 @@ public class SeqArg extends Argument {
     public String accept(DisplayTreeVisitor visitor, int i) {
         return visitor.visitSeqArg(this, i);
     }
+    public Object accept(DecorateASTVisitor visitor, Object o){return visitor.visitSeqArg(this, o);}
 }
