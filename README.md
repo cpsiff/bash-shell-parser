@@ -1,5 +1,7 @@
 # Bash Shell Parser
 
+**This branch performs contextual analysis - for AST generation only, see master branch**
+
 ## Usage
 
 Command Line Parameters:<br>
